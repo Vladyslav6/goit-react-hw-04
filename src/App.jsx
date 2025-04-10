@@ -1,3 +1,4 @@
+import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
       <div>
         <p>Start hw</p>
         <SearchBar/>
+        <ImageGallery/>
       </div>
     </>
   );

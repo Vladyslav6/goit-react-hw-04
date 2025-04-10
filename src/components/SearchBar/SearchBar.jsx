@@ -1,4 +1,6 @@
 import { Field, Form, Formik } from "formik";
+import toast from "react-hot-toast";
+
 
 
 const initialValues = {
@@ -8,7 +10,9 @@ const initialValues = {
 
 const SearchBar = ()=>{
     const handleSabmit = (values, options)=>{
-        console.log(values)
+     console.log(values)
+   
+        values.userName.length<=0?toast.error("The field cannot be empty"): console.log(values)
         options.resetForm();
     }
    
@@ -16,8 +20,8 @@ const SearchBar = ()=>{
         <div>
           <Formik initialValues={initialValues} onSubmit={handleSabmit} >
             <Form>
-                <label>
-                    <Field type="text" name="userName">
+                <label><span> Search</span>
+                    <Field type="text" name="userName" placeholder="Enter Text">
 
                     </Field>
                 </label>
