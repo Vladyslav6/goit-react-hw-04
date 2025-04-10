@@ -1,13 +1,13 @@
-import React from 'react'
-import ImageCard from './ImageCard/ImageCard'
+import React from "react";
+import ImageCard from "./ImageCard/ImageCard";
+import css from "./ImageGallery.module.css";
 
-
-const ImageGallery = () => {
+const ImageGallery = ({ sendPhoto }) => {
   return (
     <div>
-        <ImageCard/>
+      <ImageCard sendPhoto={sendPhoto} />
     </div>
-  )
-}
+  );
+};
 
-export default ImageGallery
+export default ImageGallery;

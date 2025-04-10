@@ -1,25 +1,32 @@
+import { useEffect, useState } from "react";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
+import { fetchData } from "./services/api";
 
 function App() {
+  const [photo, setPhoto] = useState([]);
+  console.log(photo);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await fetchData();
+        setPhoto(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <>
       <div>
         <p>Start hw</p>
-        <SearchBar/>
-        <ImageGallery/>
+        <SearchBar />
+        <ImageGallery sendPhoto={photo} />
       </div>
     </>
   );
 }
 
 export default App;
-
-
-////key unsplash
-
-// Application ID 735797
-// Access Key   TgX6vCr7P6VbVXRztS7x-BCKsz_x8JgBvktxAHTVZPc
-// Secret key  SmfyHcoQRIXX745hNaposXQf59sSwpJTPGK0YPFmd10
-
-//
