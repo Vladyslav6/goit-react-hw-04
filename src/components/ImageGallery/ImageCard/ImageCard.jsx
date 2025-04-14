@@ -1,11 +1,18 @@
 import React from "react";
 import css from "./ImageCard.module.css";
-const ImageCard = ({ sendPhoto }) => {
+const ImageCard = ({ sendPhoto, handleClick }) => {
   return (
     <ul className={css.cards}>
       {sendPhoto.map((item) => (
         <li key={item.id}>
-          <img src={item.urls.small} width={500} height={500} />
+          <div className={css.listCard}>
+            <img
+              onClick={() => handleClick(item.urls.regular)}
+              src={item.urls.small}
+              width={400}
+              height={400}
+            />
+          </div>
         </li>
       ))}
     </ul>

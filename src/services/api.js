@@ -7,4 +7,3 @@ export const fetchData = async (query, page, signal) => {
   );
   return response.data;
 };
-//  `https://api.unsplash.com/search/photos/?client_id=${KeyAxios}&per_page=5&query=${query}&page=${page}`

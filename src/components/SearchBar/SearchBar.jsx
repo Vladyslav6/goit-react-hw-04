@@ -1,5 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
+import css from "./SearchBar.module.css";
+import { FaSearch } from "react-icons/fa";
 
 const initialValues = {
   query: "",
@@ -7,23 +9,25 @@ const initialValues = {
 
 const SearchBar = ({ handleChangeQwery }) => {
   const handleSabmit = (values, options) => {
-    console.log(values);
+    // console.log(values);
     handleChangeQwery(values.query);
-    values.query.length <= 0
-      ? toast.error("The field cannot be empty")
-      : console.log(values);
+    if (!values.query) toast.error("The field cannot be empty");
+    // values.query.length <= 0
+    //   ? toast.error("The field cannot be empty")
+    //   : console.log(values);
     options.resetForm();
   };
 
   return (
-    <div>
+    <div className={css.SearchBox}>
       <Formik initialValues={initialValues} onSubmit={handleSabmit}>
         <Form>
           <label>
-            <span> Search</span>
+            {/* <span className={css.SeachSpan}> Search </span> */}
             <Field type="text" name="query" placeholder="Enter Text"></Field>
           </label>
-          <button type="submit">Submit</button>
+          {/* <FaSearch /> */}
+          <button type="submit">Search</button>
         </Form>
       </Formik>
     </div>
