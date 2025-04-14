@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchData } from "./services/api";
 import { RingLoader } from "react-spinners";
 import Modal from "react-modal";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -59,16 +60,11 @@ function App() {
   return (
     <>
       <div>
-        <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
-          <button onClick={closeModal}>close</button>
-          {currentImage && (
-            <img
-              src={currentImage}
-              alt="Selected"
-              style={{ maxWidth: "100%" }}
-            />
-          )}
-        </Modal>
+        <ImageModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          currentImage={currentImage}
+        />
         <SearchBar handleChangeQwery={handleChangeQwery} />
         <ImageGallery sendPhoto={photo} handleClick={handleClick} />
         {!isLoading && isError && <h2>Error server</h2>}
