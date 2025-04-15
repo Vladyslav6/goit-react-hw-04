@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import css from "./App.module.css";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchData } from "./services/api";
 import { RingLoader } from "react-spinners";
 import Modal from "react-modal";
 import ImageModal from "./components/ImageModal/ImageModal";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -67,19 +68,10 @@ function App() {
         />
         <SearchBar handleChangeQwery={handleChangeQwery} />
         <ImageGallery sendPhoto={photo} handleClick={handleClick} />
-        {!isLoading && isError && <h2>Error server</h2>}
+        {!isLoading && isError && <ErrorMessage />}
         {isLoading && <RingLoader color="#04f92b" />}
         {page < totalPages && !isLoading && (
-          <div>
-            <button
-              className={css.loadMoreBtn}
-              onClick={() => setPage(page + 1)}
-            >
-              Load more
-            </button>
-            <span className={css.spanEffect}>Page: {page}</span>
-            <span className={css.spanEffect}>Total Page: {totalPages}</span>
-          </div>
+          <LoadMoreBtn setPage={setPage} totalPages={totalPages} page={page} />
         )}
       </div>
     </>
